@@ -42,6 +42,8 @@ public final class Program {
         highValueOrderWidgetsIncRule.setConditions(Arrays.asList(highValueOrderCondition, widgetsIncCustomerCondition));
 
         String drl = applyRuleTemplate(orderEvent, highValueOrderWidgetsIncRule);
+        System.out.println("== drl : \n" + drl);
+        System.out.println("==============");
         AlertDecision alertDecision = evaluate(drl, orderEvent);
 
         System.out.println(alertDecision.getDoAlert());
@@ -56,7 +58,8 @@ public final class Program {
     static private AlertDecision evaluate(String drl, Event event) throws Exception {
         KieServices kieServices = KieServices.Factory.get();
         KieFileSystem kieFileSystem = kieServices.newKieFileSystem();
-        kieFileSystem.write("src/main/resources/rule.drl", drl);
+//        kieFileSystem.write("src/main/resources/rule.drl", drl);
+        kieFileSystem.write("src/main/resources/r1.drl", drl);
         kieServices.newKieBuilder(kieFileSystem).buildAll();
 
         KieContainer kieContainer = kieServices.newKieContainer(kieServices.getRepository().getDefaultReleaseId());
