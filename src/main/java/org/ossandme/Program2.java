@@ -55,6 +55,7 @@ public final class Program2 {
 		KieServices kieServices = KieServices.Factory.get();
 		KieFileSystem kieFileSystem = kieServices.newKieFileSystem();
 		// kieFileSystem.write("src/main/resources/rule.drl", drl);
+		//=== 별거 없다. drl의 string을 새로 만들어서, 아래와 같이 write한후에 빌드하면 된다.
 		kieFileSystem.write("src/main/resources/r1.drl", drl);
 		kieServices.newKieBuilder(kieFileSystem).buildAll();
 
