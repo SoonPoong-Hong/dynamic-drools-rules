@@ -14,10 +14,10 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-public final class Program2 {
+public final class Program3 {
 
 	static public void main(String[] args) throws Exception {
-		Program2 main = new Program2();
+		Program3 main = new Program3();
 		main.init();
 		for (int i = 0; i < 10; i++) {
 			main.process();
@@ -65,7 +65,15 @@ public final class Program2 {
 		System.out.println("== init : " + (end-start));
 	}
 
-	String drl;
+	String drl = "package org.ossandme;\n" +
+			"global org.ossandme.AlertDecision alertDecision;\n" +
+			"\n" +
+			"rule \"alert_0\"\n" +
+			"when\n" +
+			"    org.ossandme.event.OrderEvent(price > 5000.0 && customer == 'Widgets Inc.')\n" +
+			"then\n" +
+			"    alertDecision.setDoAlert(Boolean.TRUE);\n" +
+			"end";
 
 	void process() throws Exception {
 		// Create an event that will be tested against the rule. In reality, the
